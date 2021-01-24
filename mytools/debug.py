@@ -26,7 +26,7 @@ def debug(func):
 
 def d_print(*args, **kwargs):
     if trigger is True:
-        print(f'\t\033[32m', end='')
+        print(f'\033[32m', end='')
         print(*args, **kwargs, end='')
         print(f'\033[0;m')
 
