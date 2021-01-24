@@ -1,5 +1,5 @@
 # mytools
-Some tools making the life a little easier : )
+Some tools making life a little easier : )
 ## @debug
 + Show `parameters` and `return value` of the decorated function in a vivid color.
 + Meanwhile, in the same usage with `print()`, `d_print()`is also available to show the debug information in functions decorated with `@debug`.
