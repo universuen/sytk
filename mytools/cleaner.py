@@ -5,9 +5,7 @@ def clean(path):
     cache = list()
     with open(path, 'r') as f:
         for i in f.readlines():
-            if i == '@debug\n':
-                continue
-            elif 'd_print' in i:
+            if '@debug' in i or 'd_print' in i:
                 continue
             else:
                 cache.append(i)
