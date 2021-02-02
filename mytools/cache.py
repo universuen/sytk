@@ -18,9 +18,4 @@ class _Cache:
             return result
 
 
-def cache(func):
-    @functools.wraps(func)
-    def wrapper(*args, **kwargs):
-        return _Cache(func)(*args, **kwargs)
-    return wrapper
-
+cache = _Cache

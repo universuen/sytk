@@ -38,11 +38,7 @@ class _Debug:
         return result
 
 
-def debug(func):
-    @functools.wraps(func)
-    def wrapper(*args, **kwargs):
-        return _Debug(func)(*args, **kwargs)
-    return wrapper
+debug = _Debug
 
 
 def d_print(*args, **kwargs):
