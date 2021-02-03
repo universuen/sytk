@@ -21,4 +21,8 @@ class _Admin:
             self.func(*args, **kwargs)
 
 
-admin = _Admin
+def admin(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        return _Admin(func)(*args, **kwargs)
+    return wrapper
