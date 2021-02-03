@@ -1,5 +1,4 @@
-from mytools import *
-
+from sytk import *
 
 @cache
 @debug
@@ -13,5 +12,6 @@ def test_func(*args):
 
 if __name__ == '__main__':
     print(test_func(1, 2, 3))
+    print(test_func.__name__)
     print(test_func(7, 8, 9))
     print(test_func(1, 2, 3))

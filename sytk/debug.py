@@ -9,7 +9,6 @@ class _Debug:
     def __init__(self, func):
         self.func = func
         self.register[func.__name__] = self
-        functools.update_wrapper(self, func)
 
     def __call__(self, *args, **kwargs):
         print(f'\x1b[38;5;117m'
@@ -38,7 +37,11 @@ class _Debug:
         return result
 
 
-debug = _Debug
+def debug(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        return _Debug(func)(*args, **kwargs)
+    return wrapper
 
 
 def d_print(*args, **kwargs):
