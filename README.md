@@ -7,5 +7,7 @@ Cache the `{'funcname-params': return value}` of the decorated functions. It is 
 ## @debug
 + Show `parameters` and `return value` of the decorated function in a vivid color.
 + Meanwhile, in the same usage with `print()`, `d_print()`is also available to show the debug information in functions decorated with `@debug`.
+## @log
+Redirect all the context printed by `print()` into file named `func_name.log`.
 ## clean(path)
 Delete code lines containing '@debug' and 'd_print'. It is used to turn projects into productions.

@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="sytk",
-    version="0.0.1",
+    version="0.0.3",
     author="WHUSOBER",
     author_email="whusober@gmail.com",
     description="Some tools making life a little easier :)",
