@@ -1,5 +1,6 @@
 from sytk import *
 
+
 @cache
 @debug
 def test_func(*args):

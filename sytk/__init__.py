@@ -1,5 +1,4 @@
 from .cache import cache
-from .debug import debug, d_print
-from .cleaner import clean
+from .debug import debug, d_print, clean
 from .admin import admin
-from .log import log
+from .print2log import print2log
