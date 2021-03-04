@@ -16,6 +16,9 @@ class _Cache:
             self.register[arg_key] = result
             return result
 
+    def __get__(self, instance, owner):
+        return functools.partial(self.__call__, instance)
+
 
 def cache(func):
     @functools.wraps(func)

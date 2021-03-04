@@ -5,13 +5,13 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="sytk",
-    version="0.0.8",
-    author="WHUSOBER",
-    author_email="whusober@gmail.com",
+    version="0.0.9",
+    author="universuen",
+    author_email="universuen@gmail.com",
     description="Some tools making life a little easier :)",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/whusober/sytk",
+    url="https://github.com/universuen/sytk",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",

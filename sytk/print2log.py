@@ -29,10 +29,11 @@ class _Print2Log:
         try:
             result = self.func(*args, **kwargs)
             return result
-        except Exception:
-            print(traceback.format_exc())
         finally:
             sys.stdout = original_stdout
+
+    def __get__(self, instance, owner):
+        return functools.partial(self.__call__, instance)
 
 
 def print2log(func):

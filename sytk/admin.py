@@ -20,6 +20,9 @@ class _Admin:
             ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 1)
             self.func(*args, **kwargs)
 
+    def __get__(self, instance, owner):
+        return functools.partial(self.__call__, instance)
+
 
 def admin(func):
     @functools.wraps(func)

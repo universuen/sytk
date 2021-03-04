@@ -37,6 +37,9 @@ class _Debug:
 
         return result
 
+    def __get__(self, instance, owner):
+        return functools.partial(self.__call__, instance)
+
 
 def debug(func):
     @functools.wraps(func)
