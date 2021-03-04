@@ -10,7 +10,6 @@ def is_admin():
 class _Admin:
     def __init__(self, func):
         self.func = func
-        functools.update_wrapper(self, func)
 
     def __call__(self, *args, **kwargs):
         if is_admin():
@@ -28,4 +27,5 @@ def admin(func):
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
         return _Admin(func)(*args, **kwargs)
+
     return wrapper
