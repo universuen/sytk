@@ -14,7 +14,7 @@ class _SupParser(HTMLParser, ABC):
 
     def handle_starttag(self, tag, attrs):
         # generate child node
-        child_node = TagNode(tag, attrs, parent=self.node)
+        child_node = TagNode(tag, attrs, self.node)
         self._logger.debug(f"created new node: {child_node}")
         # bond the child node with current node
         self.node.children.append(child_node)
