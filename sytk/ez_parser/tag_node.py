@@ -63,8 +63,9 @@ class TagNode:
 
             # recurse
             for i in self.children:
-                if i.find(tag, args) is not None:
-                    return i
+                res = i.find(tag, args)
+                if res is not None:
+                    return res
 
         # only args is handed
         else:
@@ -79,8 +80,9 @@ class TagNode:
 
             # recurse
             for i in self.children:
-                if i.find(tag, args) is not None:
-                    return i
+                res = i.find(tag, args)
+                if res is not None:
+                    return res
 
         return None
 
@@ -107,7 +109,7 @@ class TagNode:
 
             # recurse
             for i in self.children:
-                res += i.find_all(tag, args)
+                res.extend(i.find_all(tag, args))
 
         # only args are handed
         elif args is not None:
