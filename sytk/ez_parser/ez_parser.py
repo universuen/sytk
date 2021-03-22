@@ -1,6 +1,5 @@
 from abc import ABC
 from html.parser import HTMLParser
-from typing import Union
 
 from sytk.logger import Logger
 from .tag_node import TagNode
@@ -37,17 +36,9 @@ class _SupParser(HTMLParser, ABC):
         self._logger.debug(f"returned to {self.node}\n")
 
 
-class EzParser:
-    __slots__ = ('html', 'tree', '_parser')
+class EzParser(TagNode):
 
     def __init__(self, html: str):
-        self.html = html
-        self.tree = TagNode('root')
-        self._parser = _SupParser(self.tree)
-        self._parser.feed(html)
+        super().__init__('root')
+        _SupParser(self).feed(html)
 
-    def find(self, tag: str = None, args: dict = None) -> Union[TagNode, None]:
-        return self.tree.find(tag, args)
-
-    def find_all(self, tag: str = None, args: dict = None) -> list[TagNode]:
-        return self.tree.find_all(tag, args)

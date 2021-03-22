@@ -19,7 +19,7 @@ def _contain(l1: list[tuple], l2: list[tuple]) -> bool:
 
 
 class TagNode:
-    __slots__ = ('tag', 'args', 'data', 'text', 'parent', 'children')
+    __slots__ = ('tag', 'args', 'data', 'text', 'parent', 'children', '_arg_dict')
 
     def __init__(
             self,
@@ -33,6 +33,12 @@ class TagNode:
         self.text = ''
         self.parent = parent
         self.children = []
+
+        self._arg_dict = dict()
+        if args is None:
+            return
+        for i in args:
+            self._arg_dict[i[0]] = i[1]
 
     def find(self, tag: str = None, args: dict = None) -> Union[TagNode, None]:
 
@@ -131,3 +137,6 @@ class TagNode:
 
     def __repr__(self):
         return f'<TagNode {self.tag}, {self.args}>'
+
+    def __getitem__(self, item):
+        return self._arg_dict[item]
