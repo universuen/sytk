@@ -1,5 +1,6 @@
 from abc import ABC
 from html.parser import HTMLParser
+from typing import Union
 
 from sytk.logger import Logger
 from .tag_node import TagNode
@@ -39,6 +40,8 @@ class _SupParser(HTMLParser, ABC):
 # An EzParser is actually a TagNode with a 'root' tag
 class EzParser(TagNode):
 
-    def __init__(self, html: str):
+    def __init__(self, html: Union[str, bytes]):
         super().__init__('root')
+        if type(html) is bytes:
+            html = html.decode()
         _SupParser(self).feed(html)
