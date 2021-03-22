@@ -142,4 +142,10 @@ class TagNode:
         return f'<TagNode {self.tag}, {self.args}>'
 
     def __getitem__(self, item):
-        return self._arg_dict[item]
+        if type(item) is str:
+            return self._arg_dict[item]
+        elif type(item) is int:
+            return self.children[item]
+        else:
+            raise AttributeError('str or int needed!')
+    
