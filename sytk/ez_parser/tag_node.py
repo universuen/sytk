@@ -40,6 +40,7 @@ class TagNode:
         for i in args:
             self._arg_dict[i[0]] = i[1]
 
+    # Depth first search
     def find(self, tag: str = None, args: dict = None) -> Union[TagNode, None]:
 
         if tag is None and args is None:

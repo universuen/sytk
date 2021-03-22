@@ -36,9 +36,9 @@ class _SupParser(HTMLParser, ABC):
         self._logger.debug(f"returned to {self.node}\n")
 
 
+# An EzParser is actually a TagNode with a 'root' tag
 class EzParser(TagNode):
 
     def __init__(self, html: str):
         super().__init__('root')
         _SupParser(self).feed(html)
-

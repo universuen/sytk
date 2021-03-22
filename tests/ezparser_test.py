@@ -6,5 +6,6 @@ if __name__ == '__main__':
     tags = ezp.find_all(args={'href': None})
     for i in tags:
         print(i['href'])
+    print(ezp.text)
 
 
