@@ -148,4 +148,7 @@ class TagNode:
             return self.children[item]
         else:
             raise AttributeError('str or int needed!')
+           
+    def __iter__(self):
+        return iter(self.children)        
     
