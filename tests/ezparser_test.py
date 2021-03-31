@@ -7,7 +7,7 @@ if __name__ == '__main__':
     ezp = EzParser(html)
     tags = ezp.find_all(args={'href': None})
     for i in tags:
-        print(i[0])
+        print(i)
     print(ezp.text)
 
 

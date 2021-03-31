@@ -18,14 +18,14 @@ def _contain(l1: list[tuple], l2: list[tuple]) -> bool:
     return True
 
 
-class TagNode:
+class Element:
     __slots__ = ('tag', 'args', 'data', 'text', 'parent', 'children', '_arg_dict')
 
     def __init__(
             self,
             tag: str,
             args: list[tuple[str, str]] = None,
-            parent: TagNode = None,
+            parent: Element = None,
     ):
         self.tag = tag
         self.args = args
@@ -41,7 +41,7 @@ class TagNode:
             self._arg_dict[i[0]] = i[1]
 
     # Depth first search
-    def find(self, tag: str = None, args: dict = None) -> Union[TagNode, None]:
+    def find(self, tag: str = None, args: dict = None) -> Union[Element, None]:
 
         if tag is None and args is None:
             raise AttributeError("tag and args can't both be None!")
@@ -86,7 +86,7 @@ class TagNode:
 
         return None
 
-    def find_all(self, tag: str = None, args: dict = None) -> list[TagNode]:
+    def find_all(self, tag: str = None, args: dict = None) -> list[Element]:
 
         if tag is None and args is None:
             raise AttributeError("tag and args can't both be None!")
@@ -132,14 +132,14 @@ class TagNode:
         return res
 
     def copy(self):
-        node = TagNode(self.tag, self.args, self.parent)
+        node = Element(self.tag, self.args, self.parent)
         node.data = self.data
         node.text = self.text
         node.children = self.children.copy()
         return node
 
     def __repr__(self):
-        return f'<TagNode {self.tag}, {self.args}>'
+        return f'<Element {self.tag}, {self.args}>'
 
     def __getitem__(self, item):
         if type(item) is str:

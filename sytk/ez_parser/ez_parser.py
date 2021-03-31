@@ -3,18 +3,18 @@ from html.parser import HTMLParser
 from typing import Union
 
 from sytk.logger import Logger
-from .tag_node import TagNode
+from .element import Element
 
 
 class _SupParser(HTMLParser, ABC):
-    def __init__(self, node: TagNode, convert_charrefs=True):
+    def __init__(self, node: Element, convert_charrefs=True):
         super().__init__(convert_charrefs=convert_charrefs)
         self.node = node
         self._logger = Logger(self.__class__.__name__)
 
     def handle_starttag(self, tag, attrs):
         # generate child node
-        child_node = TagNode(tag, attrs, self.node)
+        child_node = Element(tag, attrs, self.node)
         self._logger.debug(f"created new node: {child_node}")
         # bond the child node with current node
         self.node.children.append(child_node)
@@ -37,11 +37,11 @@ class _SupParser(HTMLParser, ABC):
         self._logger.debug(f"returned to {self.node}\n")
 
 
-# An EzParser is actually a TagNode with a 'root' tag
-class EzParser(TagNode):
+# An EzParser is actually a Element with a 'root' tag
+class EzParser(Element):
 
-    def __init__(self, html: Union[str, bytes]):
+    def __init__(self, html: Union[str, bytes], decoding: str='utf-8'):
         super().__init__('root')
         if type(html) is bytes:
-            html = html.decode()
+            html = html.decode(decoding)
         _SupParser(self).feed(html)
