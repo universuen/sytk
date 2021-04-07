@@ -10,21 +10,19 @@ class _StdoutHandler:
 
     def write(self, text):
         with open(self.filename, 'a') as f:
-            if text != '\n':
-                f.write(f'[{datetime.datetime.now().strftime("%Y/%m/%d, %H:%M:%S")}]\n{text}')
-            f.write('\n')
+            f.write(text)
 
     def flush(self):
         pass
 
 
-class _Print2Log:
+class _Print2File:
     def __init__(self, func):
         self.func = func
 
     def __call__(self, *args, **kwargs):
         original_stdout = sys.stdout
-        sys.stdout = _StdoutHandler(f'{inspect.stack()[2].filename.replace(".py", "")}_[{self.func.__name__}].log')
+        sys.stdout = _StdoutHandler(f'{inspect.stack()[2].filename.replace(".py", "")}-{self.func.__name__}.txt')
         try:
             result = self.func(*args, **kwargs)
             return result
@@ -35,9 +33,9 @@ class _Print2Log:
         return functools.partial(self.__call__, instance)
 
 
-def print2log(func):
+def print2file(func):
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
-        return _Print2Log(func)(*args, **kwargs)
+        return _Print2File(func)(*args, **kwargs)
 
     return wrapper

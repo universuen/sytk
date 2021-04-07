@@ -1,19 +1,26 @@
 # ___sytk___
 Some tools making life a little easier :)
-## Classes
-### EzParser
+
+## EzParser
 A simple html parser supporting recursive searching.
-## Decorators
-### @cache
-Cache the `{'func-params': return value}` of the decorated functions. It is mainly used on functions calculating duplicate data.
+## Logger
+Pre-defined `logging.Logger`.
+
+## @print2file
++ Redirect all the context printed by `print()` into file named `{file}-{func}.txt`.
++ It can also catch Exception.
+## @timer
+Just as the name implies.The return value of the decorated function will turn to `(return_value, duration)`.
+
+## debug
 ### @debug
 + Show `parameters` and `return value` of the decorated function in a vivid color.
 + Meanwhile, in the same usage with `print()`, `d_print()`is also available to show the debug information in functions decorated with `@debug`.
-### @print2log
-+ Redirect all the context printed by `print()` into file named `{file}_[{func}].log`.
-+ It can also catch Exception.
-## Functions
-### clean(path)
+### d_print()
+same usage with `print()`.
+### clean()
 Delete code lines containing '@debug' and 'd_print'. It is used to turn projects into productions.
+
+## hack
 ### get_admin()
 Get admin right for the script.

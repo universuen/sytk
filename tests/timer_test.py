@@ -8,4 +8,5 @@ def test():
 
 
 if __name__ == '__main__':
-    test()
+    _, duration = test()
+    print(duration)
