@@ -1,6 +1,18 @@
+import os
 import ctypes
 import sys
 import subprocess
+import inspect
+
+
+def add_context():
+    """
+    Add current file's directory into system path.
+    """
+    frame = inspect.stack()[1]
+    module = inspect.getmodule(frame[0])
+    filename = module.__file__
+    sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(filename), '..')))
 
 
 def get_admin():
@@ -13,7 +25,7 @@ def get_admin():
         ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 1)
 
 
-def exec_ps(ps_path: str, show_result = False, show_error = True):
+def exec_ps(ps_path: str, show_result=False, show_error=True):
     """Execute PowerShell script line by line
 
     Args:
@@ -35,4 +47,3 @@ def exec_ps(ps_path: str, show_result = False, show_error = True):
         for i in f.readlines():
             shell.stdin.write(i)
             shell.stdin.flush()
-
